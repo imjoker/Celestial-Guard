@@ -14,15 +14,18 @@ public class CountSystem : MonoBehaviour
 
     void Start()
     {
+        /*
        localScale = transform.localScale;
        rb = GetComponent<Rigidbody2D> ();
        leftWayPoint = GameObject.Find ("LeftWayPoint").GetComponent<Transform> ();
        rightWayPoint = GameObject.Find ("RightWayPoint").GetComponent<Transform> ();
+       */
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         if (transform.position.x > rightWayPoint.position.x)
             movingRight = false;
         if (transform.position.x < leftWayPoint.position.x)
@@ -32,20 +35,24 @@ public class CountSystem : MonoBehaviour
             movingRight();
         else
             moveLeft ();
-
+        */
     }
 
     void OnCollisionEnter2D (Collision2D col)
     {
         if (col.gameObject.tag.Equals ("Bullet"))
         {
-            SoundManagerScript.PlaySound ("enemyDeath");
+            ScoreScript.scoreValue += 10;
+
+            //This is music effect
+            //SoundManagerScript.PlaySound ("enemyDeath");
             Instantiate (blood, transform.position, Quaternion.identity);
             Destroy (col.gameObject);
             Destroy (gameObject);
         }
     } 
 
+    /*
     void moveRight()
     {
         moveRight = true;
@@ -53,4 +60,5 @@ public class CountSystem : MonoBehaviour
         transform.localScale = localScale;
         rb.velocity = new Vector2 (localScale.x * moveSpeed, rb.velocity.y);
     }
+    */
 }
