@@ -5,16 +5,16 @@ using UnityEngine;
 public class playerScript : MonoBehaviour
 {
     [SerializeField]
-    private GameObject Enemy;
+    private GameObject rocket;
 
     [SerializeField]
-    private AudioClip shootSound;
+    private AudioClip shootSound;//!!!
 
     private float speed = 8f;
     private float maxVelocity = 4f;
 
     private Rigidbody2D myBody;
-   // private Animator anim;
+    private Animator anim;
 
     private bool canShoot;
     private bool canWalk;
@@ -24,17 +24,47 @@ public class playerScript : MonoBehaviour
     }
 
     void Update () {
-
+        Shoot ();
     }
 
     void FixedUpdate () {
         PlayerWalk ();
     }
 
+    void Shoot() {
+        if (Input.GetMouseButtonDown (0))
+        {
+            if(canShoot)
+            {
+                StartCoroutine(ShootTheRocket());
+            }
+        }
+    }
+
+    IEnumerator ShootTheRocket()
+    {
+        canWalk = false;
+        anim.Play ("Shoot");
+        Vector3 temp = transform.position;
+        temp.y += 1f;
+
+        Instantiate (rocket, temp, Quaternion.identity);
+
+       // AudioSource.PlayClipAtPoint (shootSound, transform.position); // !!!!
+
+        yield return new WaitForSeconds (0.2f);
+        anim.SetBool ("Shoot", false);
+        canWalk = true;
+
+        yield return new WaitForSeconds (0.3f);
+        canShoot = true;
+
+    }
+
     void InitializeVariables()
     {
         myBody = GetComponent<Rigidbody2D> ();
-        //anim = GetComponent<Animator> ();
+        anim = GetComponent<Animator> ();
         canShoot = true;
         canWalk = true;
     }
@@ -43,13 +73,16 @@ public class playerScript : MonoBehaviour
     void PlayerWalk()
     {
         var force = 0f;
+        var force1 = 0f;
         var velocity = Mathf.Abs (myBody.velocity.x);
 
         
         float h = Input.GetAxis ("Horizontal");//You can change the key diraction code
+        float A = Input.GetAxis ("Vertical");
 
-        if(h > 0)
-        {
+        if (canWalk) {
+            if(h > 0)
+            {
             // moving right
             if(velocity < maxVelocity)
                 force = speed;
@@ -59,21 +92,52 @@ public class playerScript : MonoBehaviour
             transform.localScale = scale;
 
             // anim.SetBool("Walk, true);
+            }
+            else if(h < 0)
+            {
+                //moving left
+                if(velocity < maxVelocity)
+                    force = -speed;
+
+                Vector3 scale = transform.localScale;
+                scale.x = -1;
+                transform.localScale = scale;
+
+                // anim.SetBool("Walk, true);
+            }
+
         }
-        else if(h < 0)
-        {
-            //moving left
-             if(velocity < maxVelocity)
-                force = -speed;
+        
+          if (canWalk) {
+            if(A > 0)
+            {
+            // moving right
+            if(velocity < maxVelocity)
+                force1 = speed;
 
-             Vector3 scale = transform.localScale;
-             scale.x = -1;
-             transform.localScale = scale;
+            Vector3 scale = transform.localScale;
+            scale.y = 1;
+            transform.localScale = scale;
 
-             // anim.SetBool("Walk, true);
+            // anim.SetBool("Walk, true);
+            }
+            else if(A < 0)
+            {
+                //moving left
+                if(velocity < maxVelocity)
+                    force1 = -speed;
+
+                Vector3 scale = transform.localScale;
+                scale.y = 1;
+                transform.localScale = scale;
+
+                // anim.SetBool("Walk, true);
+            }
+
         }
 
         //prohibit the Y value
         myBody.AddForce (new Vector2(force, 0));
+        myBody.AddForce (new Vector2(0, force1));
     }
 }
