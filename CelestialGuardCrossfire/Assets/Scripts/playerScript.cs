@@ -46,7 +46,7 @@ public class playerScript : MonoBehaviour
         canWalk = false;
         //anim.Play ("Shoot");
         Vector3 temp = transform.position;
-        temp.x += 1f;
+        temp.y += 1f;
 
         Instantiate (rocket, temp, Quaternion.identity);
 
@@ -137,7 +137,7 @@ public class playerScript : MonoBehaviour
 
         }
 
-        //prohibit the Y value
+
         myBody.AddForce (new Vector2(force, 0));
         myBody.AddForce (new Vector2(0, force1));
     }

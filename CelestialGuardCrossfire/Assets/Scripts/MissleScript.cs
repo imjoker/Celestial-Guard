@@ -13,7 +13,7 @@ public class MissleScript : MonoBehaviour
     }
 
     void Start () {
-        myBody.velocity = new Vector2 (speed, 0);
+        myBody.velocity = new Vector2 (0, speed);
     }
 
     void OnTriggerEnter2D(Collider2D target) {

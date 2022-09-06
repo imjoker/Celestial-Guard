@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     void MoveLeft()
     {
         Vector2 newpos      = transform.position;
-        newpos.x            = newpos.x - 0.001f;
+        newpos.y            = newpos.y - 0.001f;
         transform.position  = newpos;
     }   
 }
