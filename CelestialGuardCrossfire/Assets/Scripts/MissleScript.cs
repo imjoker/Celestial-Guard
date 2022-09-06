@@ -12,7 +12,7 @@ public class MissleScript : MonoBehaviour
         myBody = GetComponent<Rigidbody2D> ();
     }
 
-    void FixedUpdate () {
+    void Start () {
         myBody.velocity = new Vector2 (speed, 0);
     }
 
