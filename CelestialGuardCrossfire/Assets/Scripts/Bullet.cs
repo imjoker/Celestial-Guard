@@ -9,12 +9,16 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * speed;
     }
 
-    void OnTriggerEnter2D (Collider2D hitInfo)
+    void OnTriggerEnter2D (Collider2D pCollidedGameObject)
     {
-        Destroy(gameObject);
+        if (pCollidedGameObject.gameObject.tag.Equals("Enemy"))
+        {
+            Destroy(gameObject);
+        }
     }
 
 }

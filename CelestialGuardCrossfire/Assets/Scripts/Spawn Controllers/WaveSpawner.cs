@@ -106,6 +106,7 @@ public class WaveSpawner : MonoBehaviour
     void SpawnEnemy (Transform pEnemy)
     {
         Transform spawnpoint = spawnpoints[Random.Range(0, spawnpoints.Length)];
+
         Instantiate(pEnemy, spawnpoint.position, spawnpoint.rotation);
     }
 }

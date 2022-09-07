@@ -15,13 +15,22 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveLeft();
+        MoveDown();
     }
 
-    void MoveLeft()
+    void MoveDown()
     {
         Vector2 newpos      = transform.position;
         newpos.y            = newpos.y - 0.001f;
         transform.position  = newpos;
     }   
+
+    void OnCollisionEnter2D(Collision2D pCollidedGameObject)
+    {
+        if (pCollidedGameObject.gameObject.CompareTag ("Bullet")) { 
+            
+            Destroy (pCollidedGameObject.gameObject);
+            Destroy (this.gameObject);
+        }
+    }
 }
