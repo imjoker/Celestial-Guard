@@ -2,21 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ScoreScript : MonoBehaviour
 {
-    public static int scoreValue = 0;
-    Text score;
+    private int scoreValue = 0;
+    public TextMeshProUGUI score;
 
     void Start()
     {
-        score = GetComponent<Text> ();
 
+        score.text = "Score: " + scoreValue.ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-        score.text = "Score:" + scoreValue;
+    }
+
+    public void IncrementScore ()
+    {
+        ++scoreValue;
+        score.text = "Score: " + scoreValue.ToString();
     }
 }

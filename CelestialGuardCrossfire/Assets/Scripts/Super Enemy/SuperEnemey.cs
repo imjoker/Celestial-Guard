@@ -7,6 +7,7 @@ public class SuperEnemey : MonoBehaviour
     private float elapsed_time = 0f;
     public float desired_duration = 400f;
     private Vector2 playerpos;
+    public GameObject gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,8 @@ public class SuperEnemey : MonoBehaviour
 
             Destroy(pCollidedGameObject.gameObject);
             Destroy(gameObject);
+
+            gameManager.GetComponent<ScoreScript>().IncrementScore();
         }
         else if (pCollidedGameObject.gameObject.CompareTag("Player"))
         {

@@ -5,11 +5,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private Rigidbody2D rb;
+    [SerializeField] private GameObject gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>(); 
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -31,6 +32,8 @@ public class Enemy : MonoBehaviour
             
             Destroy (pCollidedGameObject.gameObject);
             Destroy (gameObject);
+
+            gameManager.GetComponent<ScoreScript>().IncrementScore();
         }
     }
 }
