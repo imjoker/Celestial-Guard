@@ -75,6 +75,7 @@ public class playerScript : MonoBehaviour
         canShoot = true;
         canWalk = true;
         playerBegin = new Vector2(0f, -7f);
+        lives -= 1;
     }
 
     // Update is called once per frame
@@ -152,15 +153,19 @@ public class playerScript : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D pCollidedGameObject)
     {
-            if (lives > 0)
-            {
-                lives -= 1;
-                transform.position = playerBegin;
-            } else 
-            {
-                SceneManager.LoadScene("UI");
-            }
-            
-            
+        if (lives > 0)
+        {
+            Respawn();
+        }
+        else 
+        {
+            SceneManager.LoadScene("UI");
+        }
+    }
+
+    void Respawn ()
+    {
+        lives -= 1;
+        transform.position = playerBegin;
     }
 }
