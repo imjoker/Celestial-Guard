@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
         if (pCollidedGameObject.gameObject.CompareTag ("Bullet")) { 
             
             Destroy (pCollidedGameObject.gameObject);
-            Destroy (this.gameObject);
+            Destroy (gameObject);
         }
     }
 }

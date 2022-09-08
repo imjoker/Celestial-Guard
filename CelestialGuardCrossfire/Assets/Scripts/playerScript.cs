@@ -142,8 +142,8 @@ public class playerScript : MonoBehaviour
         myBody.AddForce (new Vector2(0, force1));
     }
 
-    void OnCollisionEnter2D(Collider2D pCollidedGameObject)
+    void OnCollisionEnter2D(Collision2D pCollidedGameObject)
     {
-            Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 }
