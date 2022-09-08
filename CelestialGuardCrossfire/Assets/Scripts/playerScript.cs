@@ -6,7 +6,13 @@ using UnityEngine.SceneManagement;
 public class playerScript : MonoBehaviour
 {
     [SerializeField]
-    private GameObject rocket;
+    private GameObject top_rocket;
+    [SerializeField]
+    private GameObject bottom_rocket;
+    [SerializeField]
+    private GameObject left_rocket;
+    [SerializeField]
+    private GameObject right_rocket;
 
     [SerializeField]
     private AudioClip shootSound;
@@ -26,6 +32,9 @@ public class playerScript : MonoBehaviour
     private bool canShoot;
     private bool canWalk;
 
+    public GameObject bottomBorder;
+    public GameObject topBorder;
+
     void Awake () {
         InitializeVariables ();
     }
@@ -39,23 +48,44 @@ public class playerScript : MonoBehaviour
     }
 
     void Shoot() {
-        if (Input.GetMouseButtonDown (0))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             if(canShoot)
             {
-                StartCoroutine(ShootTheRocket());
+                StartCoroutine(ShootThetop_rocket());
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            if (canShoot)
+            {
+                StartCoroutine(ShootTheLeft_rocket());
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (canShoot)
+            {
+                StartCoroutine(ShootTheBottom_rocket());
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (canShoot)
+            {
+                StartCoroutine(ShootTheRight_rocket());
             }
         }
     }
 
-    IEnumerator ShootTheRocket()
+    IEnumerator ShootThetop_rocket()
     {
         canWalk = false;
         //anim.Play ("Shoot");
         Vector3 temp = transform.position;
         temp.y += 1f;
 
-        Instantiate (rocket, temp, Quaternion.identity);
+        Instantiate (top_rocket, temp, Quaternion.identity);
 
         AudioSource.PlayClipAtPoint (shootSound, transform.position); // !!!!
 
@@ -68,13 +98,73 @@ public class playerScript : MonoBehaviour
 
     }
 
+    IEnumerator ShootTheRight_rocket()
+    {
+        canWalk = false;
+        //anim.Play ("Shoot");
+        Vector3 temp = transform.position;
+        temp.x += 1f;
+
+        Instantiate(right_rocket, temp, Quaternion.identity);
+
+        AudioSource.PlayClipAtPoint(shootSound, transform.position); // !!!!
+
+        yield return new WaitForSeconds(0.2f);
+        //anim.SetBool ("Shoot", false);
+        canWalk = true;
+
+        yield return new WaitForSeconds(0.3f);
+        canShoot = true;
+
+    }
+
+    IEnumerator ShootTheBottom_rocket()
+    {
+        canWalk = false;
+        //anim.Play ("Shoot");
+        Vector3 temp = transform.position;
+        temp.y -= 1f;
+
+        Instantiate(bottom_rocket, temp, Quaternion.identity);
+
+        AudioSource.PlayClipAtPoint(shootSound, transform.position); // !!!!
+
+        yield return new WaitForSeconds(0.2f);
+        //anim.SetBool ("Shoot", false);
+        canWalk = true;
+
+        yield return new WaitForSeconds(0.3f);
+        canShoot = true;
+
+    }
+
+    IEnumerator ShootTheLeft_rocket()
+    {
+        canWalk = false;
+        //anim.Play ("Shoot");
+        Vector3 temp = transform.position;
+        temp.x -= 1f;
+
+        Instantiate(left_rocket, temp, Quaternion.identity);
+
+        AudioSource.PlayClipAtPoint(shootSound, transform.position); // !!!!
+
+        yield return new WaitForSeconds(0.2f);
+        //anim.SetBool ("Shoot", false);
+        canWalk = true;
+
+        yield return new WaitForSeconds(0.3f);
+        canShoot = true;
+
+    }
+
     void InitializeVariables()
     {
         myBody = GetComponent<Rigidbody2D> ();
         anim = GetComponent<Animator> ();
         canShoot = true;
         canWalk = true;
-        playerBegin = new Vector2(0f, -7f);
+        playerBegin = new Vector2(0f, -4.2f);
         lives -= 1;
     }
 
@@ -153,13 +243,16 @@ public class playerScript : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D pCollidedGameObject)
     {
-        if (lives > 0)
+        if (pCollidedGameObject.gameObject.CompareTag("Enemy"))
         {
-            Respawn();
-        }
-        else 
-        {
-            SceneManager.LoadScene("UI");
+            if (lives > 0)
+            {
+                Respawn();
+            }
+            else
+            {
+                SceneManager.LoadScene("UI");
+            }
         }
     }
 

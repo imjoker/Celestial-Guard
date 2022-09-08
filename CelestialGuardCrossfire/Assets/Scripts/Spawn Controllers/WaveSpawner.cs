@@ -9,7 +9,7 @@ public class WaveSpawner : MonoBehaviour
     [System.Serializable]
     public class Wave 
     {
-        public Transform    enemy;
+        public Transform[]  enemy;
         public int          count;
         public float        spawn_rate;
     }
@@ -68,7 +68,7 @@ public class WaveSpawner : MonoBehaviour
 
         for (int i = 0; i < pWave.count; ++i)
         {
-            SpawnEnemy (pWave.enemy);
+            SpawnEnemy (pWave.enemy [Random.Range(0, pWave.enemy.Length)]);
             yield return new WaitForSeconds(1f / pWave.spawn_rate);
         }
 
@@ -81,14 +81,7 @@ public class WaveSpawner : MonoBehaviour
     {
         search_countdown -= Time.deltaTime;
 
-        if (search_countdown <= 0) {
-
-            search_countdown = 1f;
-
-            return ((GameObject.FindGameObjectsWithTag("Enemy")).Length != 0);
-        }
-
-        return true;
+        return (search_countdown > 0);
     }
 
     void WaveReset ()

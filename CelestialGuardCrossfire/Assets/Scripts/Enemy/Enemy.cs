@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     void MoveDown()
     {
         Vector2 newpos      = transform.position;
-        newpos.y            = newpos.y - 0.001f;
+        newpos.y            = newpos.y - 0.003f;
         transform.position  = newpos;
     }   
 

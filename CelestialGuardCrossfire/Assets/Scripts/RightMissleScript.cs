@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MissleScript : MonoBehaviour
+public class RightMissleScript : MonoBehaviour
 {
     private Rigidbody2D myBody;
 
@@ -13,12 +13,11 @@ public class MissleScript : MonoBehaviour
     }
 
     void Start () {
-        myBody.velocity = new Vector2 (0, speed);
+        myBody.velocity = new Vector2 (speed, 0);
     }
 
-    void OnTriggerEnter2D(Collider2D target) {
-        if (target.tag == "Border") {
+    void OnCollisionEnter2D(Collision2D pCollidedGameObject)
+    {
             Destroy(gameObject);
-        }
     }
 }

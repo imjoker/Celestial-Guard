@@ -12,13 +12,9 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * speed;
     }
-
-    void OnTriggerEnter2D (Collider2D pCollidedGameObject)
+    void OnCollisionEnter2D(Collision2D pCollidedGameObject)
     {
-        if (pCollidedGameObject.gameObject.tag.Equals("Enemy"))
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 
 }
