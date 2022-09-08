@@ -30,7 +30,6 @@ public class playerScript : MonoBehaviour
     private Animator anim;
 
     private bool canShoot;
-    private bool canWalk;
 
     public GameObject bottomBorder;
     public GameObject topBorder;
@@ -48,28 +47,28 @@ public class playerScript : MonoBehaviour
     }
 
     void Shoot() {
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             if(canShoot)
             {
                 StartCoroutine(ShootThetop_rocket());
             }
         }
-        else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKeyDown(KeyCode.A))
         {
             if (canShoot)
             {
                 StartCoroutine(ShootTheLeft_rocket());
             }
         }
-        else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKeyDown(KeyCode.S))
         {
             if (canShoot)
             {
                 StartCoroutine(ShootTheBottom_rocket());
             }
         }
-        else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKeyDown(KeyCode.D))
         {
             if (canShoot)
             {
@@ -80,7 +79,6 @@ public class playerScript : MonoBehaviour
 
     IEnumerator ShootThetop_rocket()
     {
-        canWalk = false;
         //anim.Play ("Shoot");
         Vector3 temp = transform.position;
         temp.y += 1f;
@@ -89,18 +87,16 @@ public class playerScript : MonoBehaviour
 
         AudioSource.PlayClipAtPoint (shootSound, transform.position); // !!!!
 
-        yield return new WaitForSeconds (0.2f);
-        //anim.SetBool ("Shoot", false);
-        canWalk = true;
-
         yield return new WaitForSeconds (0.3f);
+
+        //anim.SetBool ("Shoot", false);
+
         canShoot = true;
 
     }
 
     IEnumerator ShootTheRight_rocket()
     {
-        canWalk = false;
         //anim.Play ("Shoot");
         Vector3 temp = transform.position;
         temp.x += 1f;
@@ -109,18 +105,16 @@ public class playerScript : MonoBehaviour
 
         AudioSource.PlayClipAtPoint(shootSound, transform.position); // !!!!
 
-        yield return new WaitForSeconds(0.2f);
-        //anim.SetBool ("Shoot", false);
-        canWalk = true;
-
         yield return new WaitForSeconds(0.3f);
+
+        //anim.SetBool ("Shoot", false);
+
         canShoot = true;
 
     }
 
     IEnumerator ShootTheBottom_rocket()
     {
-        canWalk = false;
         //anim.Play ("Shoot");
         Vector3 temp = transform.position;
         temp.y -= 1f;
@@ -129,18 +123,16 @@ public class playerScript : MonoBehaviour
 
         AudioSource.PlayClipAtPoint(shootSound, transform.position); // !!!!
 
-        yield return new WaitForSeconds(0.2f);
-        //anim.SetBool ("Shoot", false);
-        canWalk = true;
-
         yield return new WaitForSeconds(0.3f);
+
+        //anim.SetBool ("Shoot", false);
+
         canShoot = true;
 
     }
 
     IEnumerator ShootTheLeft_rocket()
     {
-        canWalk = false;
         //anim.Play ("Shoot");
         Vector3 temp = transform.position;
         temp.x -= 1f;
@@ -149,11 +141,10 @@ public class playerScript : MonoBehaviour
 
         AudioSource.PlayClipAtPoint(shootSound, transform.position); // !!!!
 
-        yield return new WaitForSeconds(0.2f);
-        //anim.SetBool ("Shoot", false);
-        canWalk = true;
-
         yield return new WaitForSeconds(0.3f);
+
+        //anim.SetBool ("Shoot", false);
+
         canShoot = true;
 
     }
@@ -163,7 +154,6 @@ public class playerScript : MonoBehaviour
         myBody = GetComponent<Rigidbody2D> ();
         anim = GetComponent<Animator> ();
         canShoot = true;
-        canWalk = true;
         playerBegin = new Vector2(0f, -4.2f);
         lives -= 1;
     }
@@ -179,63 +169,58 @@ public class playerScript : MonoBehaviour
         float h = Input.GetAxis ("Horizontal");//You can change the key diraction code
         float A = Input.GetAxis ("Vertical");
 
-        if (canWalk) {
-            if(h > 0)
-            {
-            // moving right
+        
+        if(h > 0)
+        {
+        // moving right
+        if(velocity < maxVelocity)
+            force = speed;
+
+        Vector3 scale = transform.localScale;
+        //scale.x = 1;
+        transform.localScale = scale;
+
+        //anim.SetBool("Walk, true);
+        }
+
+        else if(h < 0)
+        {
+            //moving left
             if(velocity < maxVelocity)
-                force = speed;
+                force = -speed;
 
             Vector3 scale = transform.localScale;
-            //scale.x = 1;
+            //scale.x = -1;
             transform.localScale = scale;
 
             //anim.SetBool("Walk, true);
-            }
-
-            else if(h < 0)
-            {
-                //moving left
-                if(velocity < maxVelocity)
-                    force = -speed;
-
-                Vector3 scale = transform.localScale;
-                //scale.x = -1;
-                transform.localScale = scale;
-
-                //anim.SetBool("Walk, true);
-            }
-
         }
+
         
-          if (canWalk) {
-            if(A > 0)
-            {
-            // moving right
+        if(A > 0)
+        {
+        // moving right
+        if(velocity < maxVelocity)
+            force1 = speed;
+
+        Vector3 scale = transform.localScale;
+        //scale.y = 1;
+        transform.localScale = scale;
+
+        //anim.SetBool("Walk, true);
+        }
+        else if(A < 0)
+        {
+            //moving left
             if(velocity < maxVelocity)
-                force1 = speed;
+                force1 = -speed;
 
             Vector3 scale = transform.localScale;
             //scale.y = 1;
             transform.localScale = scale;
 
             //anim.SetBool("Walk, true);
-            }
-            else if(A < 0)
-            {
-                //moving left
-                if(velocity < maxVelocity)
-                    force1 = -speed;
-
-                Vector3 scale = transform.localScale;
-                //scale.y = 1;
-                transform.localScale = scale;
-
-                //anim.SetBool("Walk, true);
-            }
-
         }
-
 
         myBody.AddForce (new Vector2(force, 0));
         myBody.AddForce (new Vector2(0, force1));
