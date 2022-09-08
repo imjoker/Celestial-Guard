@@ -18,11 +18,11 @@ public class ScoreScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        score.text = "Score: " + scoreValue.ToString();
     }
 
     public void IncrementScore ()
     {
         ++scoreValue;
-        score.text = "Score: " + scoreValue.ToString();
     }
 }

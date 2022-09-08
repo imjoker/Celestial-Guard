@@ -16,8 +16,9 @@ public class LeftMissleScript : MonoBehaviour
         myBody.velocity = new Vector2 (-speed, 0);
     }
 
-    void OnCollisionEnter2D(Collision2D pCollidedGameObject)
+    void OnTriggerEnter2D(Collider2D pCollidedGameObject)
     {
+        if (pCollidedGameObject.tag != "Player")
             Destroy(gameObject);
     }
 }
