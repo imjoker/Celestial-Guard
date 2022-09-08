@@ -88,7 +88,7 @@ public class playerScript : MonoBehaviour
                 force = speed;
 
             Vector3 scale = transform.localScale;
-            scale.x = 1;
+            //scale.x = 1;
             transform.localScale = scale;
 
             //anim.SetBool("Walk, true);
@@ -101,7 +101,7 @@ public class playerScript : MonoBehaviour
                     force = -speed;
 
                 Vector3 scale = transform.localScale;
-                scale.x = -1;
+                //scale.x = -1;
                 transform.localScale = scale;
 
                 //anim.SetBool("Walk, true);
@@ -117,7 +117,7 @@ public class playerScript : MonoBehaviour
                 force1 = speed;
 
             Vector3 scale = transform.localScale;
-            scale.y = 1;
+            //scale.y = 1;
             transform.localScale = scale;
 
             //anim.SetBool("Walk, true);
@@ -129,7 +129,7 @@ public class playerScript : MonoBehaviour
                     force1 = -speed;
 
                 Vector3 scale = transform.localScale;
-                scale.y = 1;
+                //scale.y = 1;
                 transform.localScale = scale;
 
                 //anim.SetBool("Walk, true);
@@ -144,6 +144,6 @@ public class playerScript : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D pCollidedGameObject)
     {
-        Destroy(gameObject);
+            Destroy(gameObject);
     }
 }
