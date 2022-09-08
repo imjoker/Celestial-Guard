@@ -42,8 +42,9 @@ public class WaveSpawner : MonoBehaviour
     {
         if (spawnstate == SpawnState.WAITING) {
 
-            if (!AreEnemiesAlive ()) { 
-            
+            if (!AreEnemiesAlive ()) {
+
+                WaveReset();
             } else {
                 return;
             }
@@ -80,10 +81,11 @@ public class WaveSpawner : MonoBehaviour
     {
         search_countdown -= Time.deltaTime;
 
-        if (search_countdown == 0) {
+        if (search_countdown <= 0) {
 
             search_countdown = 1f;
-            return (GameObject.FindGameObjectsWithTag("Enemy") != null);
+
+            return ((GameObject.FindGameObjectsWithTag("Enemy")).Length != 0);
         }
 
         return true;
