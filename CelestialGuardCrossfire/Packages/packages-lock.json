@@ -1,19 +1,11 @@
 {
   "dependencies": {
     "com.unity.2d.animation": {
-<<<<<<< Updated upstream
       "version": "8.0.2",
       "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.2d.common": "7.0.0",
-=======
-      "version": "8.0.3",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.2d.common": "7.0.1",
->>>>>>> Stashed changes
         "com.unity.2d.sprite": "1.0.0",
         "com.unity.modules.animation": "1.0.0",
         "com.unity.modules.uielements": "1.0.0"
@@ -21,11 +13,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.2d.common": {
-<<<<<<< Updated upstream
       "version": "7.0.0",
-=======
-      "version": "7.0.1",
->>>>>>> Stashed changes
       "depth": 2,
       "source": "registry",
       "dependencies": {
@@ -33,11 +21,7 @@
         "com.unity.mathematics": "1.1.0",
         "com.unity.modules.uielements": "1.0.0",
         "com.unity.modules.animation": "1.0.0",
-<<<<<<< Updated upstream
         "com.unity.burst": "1.6.0"
-=======
-        "com.unity.burst": "1.7.3"
->>>>>>> Stashed changes
       },
       "url": "https://packages.unity.com"
     },
@@ -49,21 +33,12 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.2d.psdimporter": {
-<<<<<<< Updated upstream
       "version": "7.0.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.2d.animation": "8.0.2",
         "com.unity.2d.common": "7.0.0",
-=======
-      "version": "7.0.2",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.2d.animation": "8.0.3",
-        "com.unity.2d.common": "7.0.1",
->>>>>>> Stashed changes
         "com.unity.2d.sprite": "1.0.0"
       },
       "url": "https://packages.unity.com"
@@ -75,20 +50,12 @@
       "dependencies": {}
     },
     "com.unity.2d.spriteshape": {
-<<<<<<< Updated upstream
       "version": "8.0.0",
-=======
-      "version": "8.0.1",
->>>>>>> Stashed changes
       "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.mathematics": "1.1.0",
-<<<<<<< Updated upstream
         "com.unity.2d.common": "7.0.0",
-=======
-        "com.unity.2d.common": "7.0.1",
->>>>>>> Stashed changes
         "com.unity.modules.physics2d": "1.0.0"
       },
       "url": "https://packages.unity.com"
@@ -141,19 +108,11 @@
       "depth": 0,
       "source": "builtin",
       "dependencies": {
-<<<<<<< Updated upstream
         "com.unity.2d.animation": "8.0.2",
         "com.unity.2d.pixel-perfect": "5.0.1",
         "com.unity.2d.psdimporter": "7.0.1",
         "com.unity.2d.sprite": "1.0.0",
         "com.unity.2d.spriteshape": "8.0.0",
-=======
-        "com.unity.2d.animation": "8.0.3",
-        "com.unity.2d.pixel-perfect": "5.0.1",
-        "com.unity.2d.psdimporter": "7.0.2",
-        "com.unity.2d.sprite": "1.0.0",
-        "com.unity.2d.spriteshape": "8.0.1",
->>>>>>> Stashed changes
         "com.unity.2d.tilemap": "1.0.0",
         "com.unity.2d.tilemap.extras": "3.0.2"
       }
