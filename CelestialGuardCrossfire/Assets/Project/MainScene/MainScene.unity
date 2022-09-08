@@ -1145,6 +1145,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1917397178, guid: 964681e575f21574cb719299e07d3e41, type: 3}
+      propertyPath: lives
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2953433527347426934, guid: 964681e575f21574cb719299e07d3e41, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1155,7 +1159,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2953433527347426934, guid: 964681e575f21574cb719299e07d3e41, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.9
+      value: -7.82
       objectReference: {fileID: 0}
     - target: {fileID: 2953433527347426934, guid: 964681e575f21574cb719299e07d3e41, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1189,6 +1193,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2953433527347426936, guid: 964681e575f21574cb719299e07d3e41, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 588736ac906703a48add3f5db7797914, type: 2}
     - target: {fileID: 2953433527347426937, guid: 964681e575f21574cb719299e07d3e41, type: 3}
       propertyPath: m_Name
       value: Player

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class playerScript : MonoBehaviour
 {
@@ -9,6 +10,12 @@ public class playerScript : MonoBehaviour
 
     [SerializeField]
     private AudioClip shootSound;
+
+    [SerializeField]
+    private int lives = 3;
+
+    private Vector2 playerBegin;
+
 
     private float speed = 8f;
     private float maxVelocity = 4f;
@@ -67,6 +74,7 @@ public class playerScript : MonoBehaviour
         anim = GetComponent<Animator> ();
         canShoot = true;
         canWalk = true;
+        playerBegin = new Vector2(0f, -7f);
     }
 
     // Update is called once per frame
@@ -144,6 +152,15 @@ public class playerScript : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D pCollidedGameObject)
     {
-            Destroy(gameObject);
+            if (lives > 0)
+            {
+                lives -= 1;
+                transform.position = playerBegin;
+            } else 
+            {
+                SceneManager.LoadScene("UI");
+            }
+            
+            
     }
 }
