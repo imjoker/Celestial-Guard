@@ -27,7 +27,7 @@ public class SuperEnemey : MonoBehaviour
         transform.position = Vector2.Lerp(transform.position, playerpos, percentage_complete);
     }
 
-    void OnCollisionEnter2D(Collision2D pCollidedGameObject)
+    void OnTriggerEnter2D(Collider2D pCollidedGameObject)
     {
         if (pCollidedGameObject.gameObject.CompareTag("Bullet"))
         {

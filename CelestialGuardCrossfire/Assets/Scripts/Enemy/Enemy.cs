@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private Rigidbody2D rb;
-    [SerializeField] private GameObject gameManager;
+    public GameObject gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -24,11 +24,11 @@ public class Enemy : MonoBehaviour
         Vector2 newpos      = transform.position;
         newpos.y            = newpos.y - 0.003f;
         transform.position  = newpos;
-    }   
+    }
 
-    void OnCollisionEnter2D(Collision2D pCollidedGameObject)
+    void OnTriggerEnter2D(Collider2D pCollidedGameObject)
     {
-        if (pCollidedGameObject.gameObject.CompareTag ("Bullet")) { 
+        if (pCollidedGameObject.tag == "Bullet") { 
             
             Destroy (pCollidedGameObject.gameObject);
             Destroy (gameObject);
