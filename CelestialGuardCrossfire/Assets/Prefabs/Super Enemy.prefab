@@ -67,7 +67,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   desired_duration: 2000
-  gameManager: {fileID: 8912374304816602998, guid: dac4414f3967ddb419f92e68a3910554, type: 3}
+  gameManager: {fileID: 0}
 --- !u!95 &-7366564324833182996
 Animator:
   serializedVersion: 4

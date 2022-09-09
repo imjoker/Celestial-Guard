@@ -5,12 +5,14 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private Rigidbody2D rb;
-    [SerializeField] private GameObject gameManager;
+    public GameObject gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager");
     }
 
     // Update is called once per frame
@@ -24,12 +26,14 @@ public class Enemy : MonoBehaviour
         Vector2 newpos      = transform.position;
         newpos.y            = newpos.y - 0.003f;
         transform.position  = newpos;
-    }   
+    }
 
-    void OnTriggerEnter2D(Collider2D  pCollidedGameObject)
+    void OnTriggerEnter2D(Collider2D pCollidedGameObject)
     {
-        if (pCollidedGameObject.tag == "Bullet") { 
-            ScoreScript.scoreValue += 1;
+        if (pCollidedGameObject.tag == "Bullet") {
+
+            gameManager.GetComponent<ScoreScript>().IncrementScore();
+            Debug.Log("Score updated");
             Destroy (pCollidedGameObject.gameObject);
             Destroy (gameObject);
 

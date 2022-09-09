@@ -12,6 +12,7 @@ public class SuperEnemey : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager");
     }
 
     // Update is called once per frame
@@ -27,7 +28,7 @@ public class SuperEnemey : MonoBehaviour
         transform.position = Vector2.Lerp(transform.position, playerpos, percentage_complete);
     }
 
-    void OnCollisionEnter2D(Collision2D pCollidedGameObject)
+    void OnTriggerEnter2D(Collider2D pCollidedGameObject)
     {
         if (pCollidedGameObject.gameObject.CompareTag("Bullet"))
         {

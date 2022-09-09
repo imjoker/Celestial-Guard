@@ -241,6 +241,21 @@ public class playerScript : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D pCollidedGameObject)
+    {
+        if (pCollidedGameObject.gameObject.CompareTag("Enemy"))
+        {
+            if (lives > 0)
+            {
+                Respawn();
+            }
+            else
+            {
+                SceneManager.LoadScene("UI");
+            }
+        }
+    }
+
     void Respawn ()
     {
         lives -= 1;
