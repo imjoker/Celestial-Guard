@@ -16,12 +16,9 @@ public class TopMissleScript : MonoBehaviour
         myBody.velocity = new Vector2 (0, speed);
     }
 
-    void OnTriggerEnter2D(Collider2D  pCollidedGameObject)
+    void OnTriggerEnter2D(Collider2D pCollidedGameObject)
     {
         if (pCollidedGameObject.tag != "Player")
-        {
-            
             Destroy(gameObject);
-        }
     }
 }

@@ -6,25 +6,24 @@ using TMPro;
 
 public class ScoreScript : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText;
-    public static int scoreValue = 0;
-    Text score;
-
+    public int scoreValue = 0;
+    public TextMeshProUGUI score;
 
     void Start()
     {
-        scoreText = GetComponent<TextMeshProUGUI>();
+        scoreValue = 0;
+        score.text = "Score: " + scoreValue.ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = "Score:" + scoreValue;
+        score.text = "Score: " + scoreValue.ToString();
     }
 
-     void Awake ()
+    public void IncrementScore ()
     {
-     score = GetComponent <Text> ();
-     scoreValue = 0;
+        ++scoreValue;
+        Debug.Log("Score Increased " + scoreValue);
     }
 }

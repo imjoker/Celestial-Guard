@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
             Destroy (pCollidedGameObject.gameObject);
             Destroy (gameObject);
 
-            //gameManager.GetComponent<ScoreScript>().IncrementScore();
+
         }
     }
 }
