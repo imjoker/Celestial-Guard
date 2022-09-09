@@ -26,10 +26,9 @@ public class Enemy : MonoBehaviour
         transform.position  = newpos;
     }   
 
-    void OnCollisionEnter2D(Collision2D pCollidedGameObject)
+    void OnTriggerEnter2D(Collider2D  pCollidedGameObject)
     {
-        if (pCollidedGameObject.gameObject.CompareTag ("Bullet")) { 
-            
+        if (pCollidedGameObject.tag == "Bullet") { 
             Destroy (pCollidedGameObject.gameObject);
             Destroy (gameObject);
 
