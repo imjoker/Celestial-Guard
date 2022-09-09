@@ -35,7 +35,7 @@ public class SuperEnemey : MonoBehaviour
             Destroy(pCollidedGameObject.gameObject);
             Destroy(gameObject);
 
-            gameManager.GetComponent<ScoreScript>().IncrementScore();
+            //gameManager.GetComponent<ScoreScript>().IncrementScore();//I change the code follow "ScoreScript"
         }
         else if (pCollidedGameObject.gameObject.CompareTag("Player"))
         {

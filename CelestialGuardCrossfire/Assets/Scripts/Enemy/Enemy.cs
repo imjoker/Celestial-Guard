@@ -29,10 +29,11 @@ public class Enemy : MonoBehaviour
     void OnTriggerEnter2D(Collider2D  pCollidedGameObject)
     {
         if (pCollidedGameObject.tag == "Bullet") { 
+            ScoreScript.scoreValue += 1;
             Destroy (pCollidedGameObject.gameObject);
             Destroy (gameObject);
 
-            gameManager.GetComponent<ScoreScript>().IncrementScore();
+            //gameManager.GetComponent<ScoreScript>().IncrementScore();
         }
     }
 }
