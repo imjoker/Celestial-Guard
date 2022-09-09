@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager");
     }
 
     // Update is called once per frame
@@ -28,12 +30,14 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D pCollidedGameObject)
     {
-        if (pCollidedGameObject.tag == "Bullet") { 
-            
+        if (pCollidedGameObject.tag == "Bullet") {
+
+            gameManager.GetComponent<ScoreScript>().IncrementScore();
+            Debug.Log("Score updated");
             Destroy (pCollidedGameObject.gameObject);
             Destroy (gameObject);
 
-            gameManager.GetComponent<ScoreScript>().IncrementScore();
+
         }
     }
 }

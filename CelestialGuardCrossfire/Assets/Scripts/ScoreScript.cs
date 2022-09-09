@@ -6,12 +6,12 @@ using TMPro;
 
 public class ScoreScript : MonoBehaviour
 {
-    private int scoreValue = 0;
+    public int scoreValue = 0;
     public TextMeshProUGUI score;
 
     void Start()
     {
-
+        scoreValue = 0;
         score.text = "Score: " + scoreValue.ToString();
     }
 
@@ -24,5 +24,6 @@ public class ScoreScript : MonoBehaviour
     public void IncrementScore ()
     {
         ++scoreValue;
+        Debug.Log("Score Increased " + scoreValue);
     }
 }
