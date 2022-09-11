@@ -39,7 +39,6 @@ public class SuperEnemey : MonoBehaviour
         { 
             anim.SetTrigger("Die");
             Debug.Log("collide");
-            ScoreScript.scoreValue += 1;
             Destroy(pCollidedGameObject.gameObject);
 
             gameManager.GetComponent<ScoreScript>().IncrementScore();
