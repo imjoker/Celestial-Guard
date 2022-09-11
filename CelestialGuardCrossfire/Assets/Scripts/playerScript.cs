@@ -85,7 +85,8 @@ public class playerScript : MonoBehaviour
 
         Instantiate (top_rocket, temp, Quaternion.identity);
 
-        AudioSource.PlayClipAtPoint (shootSound, transform.position); // !!!!
+        //SoundManagerScripts.PlaySound ("celestialguard_shoot");
+        //AudioSource.PlayClipAtPoint ("celestialguard_shoot", transform.position); 
 
         yield return new WaitForSeconds (0.3f);
 
@@ -103,8 +104,8 @@ public class playerScript : MonoBehaviour
 
         Instantiate(right_rocket, temp, Quaternion.identity);
 
-        AudioSource.PlayClipAtPoint(shootSound, transform.position); // !!!!
-
+       // AudioSource.PlayClipAtPoint(shootSound, transform.position); 
+        //SoundManagerScripts.PlaySound ("celestialguard_shoot");
         yield return new WaitForSeconds(0.3f);
 
         //anim.SetBool ("Shoot", false);
@@ -230,13 +231,16 @@ public class playerScript : MonoBehaviour
     {
         if (pCollidedGameObject.gameObject.CompareTag("Enemy"))
         {
+            
             if (lives > 0)
             {
+                anim.Play ("player_hurt");
                 Respawn();
             }
             else
             {
-                SceneManager.LoadScene("UI");
+                anim.Play ("player_die");
+            
             }
         }
     }
@@ -260,5 +264,11 @@ public class playerScript : MonoBehaviour
     {
         lives -= 1;
         transform.position = playerBegin;
+    }
+
+    public void Die()
+    {
+        Destroy(this.gameObject);
+        SceneManager.LoadScene("UI");
     }
 }

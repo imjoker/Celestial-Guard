@@ -8,11 +8,15 @@ public class SuperEnemey : MonoBehaviour
     public float desired_duration = 400f;
     private Vector2 playerpos;
     public GameObject gameManager;
+    private Animator anim;
+    private Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -26,21 +30,28 @@ public class SuperEnemey : MonoBehaviour
         playerpos = GameObject.Find("Player").transform.position;
 
         transform.position = Vector2.Lerp(transform.position, playerpos, percentage_complete);
+        
     }
 
-    void OnTriggerEnter2D(Collider2D pCollidedGameObject)
+    void OnTriggerEnter2D(Collider2D  pCollidedGameObject)
     {
-        if (pCollidedGameObject.gameObject.CompareTag("Bullet"))
-        {
-
+        if (pCollidedGameObject.tag == "Bullet") 
+        { 
+            anim.SetTrigger("Die");
+            Debug.Log("collide");
+            ScoreScript.scoreValue += 1;
             Destroy(pCollidedGameObject.gameObject);
-            Destroy(gameObject);
 
             gameManager.GetComponent<ScoreScript>().IncrementScore();
+            Debug.Log("collide2");
+
+            //Destroy (gameObject);
+            //gameManager.GetComponent<ScoreScript>().IncrementScore();//I change the code follow "ScoreScript"
         }
-        else if (pCollidedGameObject.gameObject.CompareTag("Player"))
-        {
-            elapsed_time = 0;
-        }
+    }
+
+    public void Die()
+    {
+        Destroy(this.gameObject);
     }
 }
