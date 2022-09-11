@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  bullet: {fileID: 4025371850134015538, guid: e7e7d7c5ef4f69249bf2a52d28dc8e1e, type: 3}
 --- !u!50 &306605048190126214
 Rigidbody2D:
   serializedVersion: 4
