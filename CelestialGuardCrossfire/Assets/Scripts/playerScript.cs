@@ -61,13 +61,13 @@ public class playerScript : MonoBehaviour
                 StartCoroutine(ShootTheLeft_rocket());
             }
         }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            if (canShoot)
-            {
-                StartCoroutine(ShootTheBottom_rocket());
-            }
-        }
+        //else if (Input.GetKeyDown(KeyCode.S))
+        //{
+        //    if (canShoot)
+        //    {
+        //        StartCoroutine(ShootTheBottom_rocket());
+        //    }
+        //}
         else if (Input.GetKeyDown(KeyCode.D))
         {
             if (canShoot)

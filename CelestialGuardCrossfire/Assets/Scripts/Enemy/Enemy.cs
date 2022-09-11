@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     private Rigidbody2D rb;
     public GameObject gameManager;
+    public GameObject bullet;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         MoveDown();
+        Shoot ();
     }
 
     void MoveDown()
@@ -26,6 +28,11 @@ public class Enemy : MonoBehaviour
         Vector2 newpos      = transform.position;
         newpos.y            = newpos.y - 0.003f;
         transform.position  = newpos;
+    }
+
+    void Shoot ()
+    {
+
     }
 
     void OnTriggerEnter2D(Collider2D pCollidedGameObject)

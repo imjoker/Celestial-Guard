@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3284003988923228793}
   m_Layer: 0
   m_Name: Game Manager
-  m_TagString: Untagged
+  m_TagString: Game Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc0d50fbdae64f64184bf58c5b74a829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  superenemy: {fileID: 8209327200113482395, guid: 373fcee56175b4942997a2182b74bba3, type: 3}
   waves:
   - enemy:
     - {fileID: 224747156357855781, guid: aa2a71a9a287ceb46adf05203e9ebcdd, type: 3}
@@ -57,7 +58,8 @@ MonoBehaviour:
   - enemy:
     - {fileID: 224747156357855781, guid: aa2a71a9a287ceb46adf05203e9ebcdd, type: 3}
     - {fileID: 8209327200113482395, guid: 373fcee56175b4942997a2182b74bba3, type: 3}
-    count: 20
+    - {fileID: 4914670616181584929, guid: 64a06ea1f2575eb48a74e21ff0000481, type: 3}
+    count: 50
     spawn_rate: 0.7
   spawnpoints:
   - {fileID: 2908622100715884939, guid: 3028a53e4ed72b9409e704fc36de7d02, type: 3}
@@ -65,6 +67,8 @@ MonoBehaviour:
   - {fileID: 8797735084894843185, guid: 6dea19826e647c94ab38cccb8ec6955f, type: 3}
   - {fileID: 7391876886690795197, guid: 6967a7afd33f29b4e9f7c0d859e2b51c, type: 3}
   - {fileID: 1451869677483368696, guid: e00aee751b8e1af4eacbcf93a1291afa, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   time_between_waves: 1
   wave_countdown: 0
 --- !u!114 &3284003988923228793
