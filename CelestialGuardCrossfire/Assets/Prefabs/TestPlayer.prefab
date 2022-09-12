@@ -167,10 +167,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 290d0a9874164a34aa0b298fc4f900e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  top_rocket: {fileID: 4025371850134015538, guid: 1aaa2c5f5aa085a48a1f21361938c131, type: 3}
+  top_rocket: {fileID: 6614020574648145737, guid: c8b510a36ffac8f46924fd99b1ef50e3, type: 3}
   bottom_rocket: {fileID: 4025371850134015538, guid: e1877200461c78246bfd2567a6db9ac8, type: 3}
-  left_rocket: {fileID: 4025371850134015538, guid: 5e297f8ba1f33cb46a7c00f90c583179, type: 3}
-  right_rocket: {fileID: 4025371850134015538, guid: bba883fea6d7c3a45b2c3c2ebe59e0d2, type: 3}
+  left_rocket: {fileID: 6614020574648145737, guid: 7c3162ed49d9f334887152a204d6dc95, type: 3}
+  right_rocket: {fileID: 6614020574648145737, guid: ead895b8ba413694cb4a3bba59f5ae8e, type: 3}
   shootSound: {fileID: 8300000, guid: 8f9b74d9835df3442aed1caca573a1ea, type: 3}
   lives: 3
   bottomBorder: {fileID: 0}

@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class playerScript : MonoBehaviour
 {
+    public enum PowerUps { INACTIVE, DOUBLE_PLAYER };
+
     [SerializeField]
     private GameObject top_rocket;
     [SerializeField]
@@ -34,16 +36,45 @@ public class playerScript : MonoBehaviour
     public GameObject bottomBorder;
     public GameObject topBorder;
 
+    private float timer;
+    private PowerUps currPowerUp;
+
+    private GameObject doublePlayer;
+
+    public bool isActualPlayer = true;
+
     void Awake () {
         InitializeVariables ();
     }
 
     void Update () {
         Shoot ();
+
+        PowerUpHandler();
     }
 
     void FixedUpdate () {
         PlayerWalk ();
+    }
+
+    void PowerUpHandler ()
+    {
+        if (currPowerUp != PowerUps.INACTIVE)
+            timer -= Time.deltaTime;
+
+        if (timer <= 0)
+        {
+            timer = 0;
+            MakeCurrentPowerUpInactive();
+        }
+    }
+
+    void MakeCurrentPowerUpInactive ()
+    {
+        if (currPowerUp == PowerUps.DOUBLE_PLAYER)
+            Destroy(doublePlayer);
+
+        currPowerUp = PowerUps.INACTIVE;
     }
 
     void Shoot() {
@@ -157,6 +188,8 @@ public class playerScript : MonoBehaviour
         canShoot = true;
         playerBegin = new Vector2(0f, -4.2f);
         lives -= 1;
+        timer = 0;
+        currPowerUp = PowerUps.INACTIVE;
     }
 
     // Update is called once per frame
@@ -229,6 +262,14 @@ public class playerScript : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D pCollidedGameObject)
     {
+        if (GetComponent<playerScript>().isActualPlayer == false)
+        {
+            if (pCollidedGameObject.gameObject.CompareTag("Enemy"))
+                Destroy(gameObject);
+            return;
+        }
+            
+
         if (pCollidedGameObject.gameObject.CompareTag("Enemy"))
         {
             
@@ -240,13 +281,22 @@ public class playerScript : MonoBehaviour
             else
             {
                 anim.Play ("player_die");
-            
+                SceneManager.LoadScene("UI");
+
             }
         }
     }
 
     void OnTriggerEnter2D(Collider2D pCollidedGameObject)
     {
+        if (GetComponent<playerScript>().isActualPlayer == false)
+        {
+            if (pCollidedGameObject.gameObject.CompareTag("Enemy"))
+                Destroy(gameObject);
+
+            return;
+        }
+
         if (pCollidedGameObject.gameObject.CompareTag("Enemy"))
         {
             if (lives > 0)
@@ -255,13 +305,27 @@ public class playerScript : MonoBehaviour
             }
             else
             {
+                anim.Play("player_die");
                 SceneManager.LoadScene("UI");
             }
+        }
+        else if (pCollidedGameObject.gameObject.CompareTag("Double-Player"))
+        {
+                Vector2 vec;
+
+            vec = new Vector2 (transform.position.x + 2, transform.position.y);
+
+            doublePlayer = Instantiate(gameObject, vec, transform.rotation);
+            timer = 10f;
+            currPowerUp = PowerUps.DOUBLE_PLAYER;
+
+            doublePlayer.GetComponent<playerScript> ().isActualPlayer = false;
         }
     }
 
     void Respawn ()
     {
+
         lives -= 1;
         transform.position = playerBegin;
     }

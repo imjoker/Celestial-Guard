@@ -69,6 +69,8 @@ MonoBehaviour:
   - {fileID: 1451869677483368696, guid: e00aee751b8e1af4eacbcf93a1291afa, type: 3}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   time_between_waves: 1
   wave_countdown: 0
 --- !u!114 &3284003988923228793

@@ -10,6 +10,7 @@ public class SuperEnemey : MonoBehaviour
     public GameObject gameManager;
     private Animator anim;
     private Rigidbody2D rb;
+    public GameObject powerup;
 
     // Start is called before the first frame update
     void Start()
