@@ -30,6 +30,9 @@ public class LeftAsteroid : MonoBehaviour
     {
         if (pCollidedGameObject.tag == "Bullet" || pCollidedGameObject.tag == "Wall")
         {
+            if (pCollidedGameObject.gameObject.CompareTag("Bullet"))
+                Instantiate(powerup, transform);
+
             Destroy(pCollidedGameObject.gameObject);
             Destroy(gameObject);
         }
@@ -38,6 +41,9 @@ public class LeftAsteroid : MonoBehaviour
     {
         if (pCollidedGameObject.gameObject.CompareTag ("Bullet") || pCollidedGameObject.gameObject.CompareTag("Wall"))
         {
+            if (pCollidedGameObject.gameObject.CompareTag("Bullet"))
+                Instantiate(powerup, transform);
+
             Destroy(pCollidedGameObject.gameObject);
             Destroy(gameObject);
         }
