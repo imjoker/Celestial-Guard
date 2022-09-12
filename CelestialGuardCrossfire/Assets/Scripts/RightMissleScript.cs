@@ -21,4 +21,10 @@ public class RightMissleScript : MonoBehaviour
         if (pCollidedGameObject.tag != "Player")
             Destroy(gameObject);
     }
+
+    void OnCollisionEnter2D(Collision2D pCollidedGameObject)
+    {
+        if (pCollidedGameObject.gameObject.tag != "Player")
+            Destroy(gameObject);
+    }
 }

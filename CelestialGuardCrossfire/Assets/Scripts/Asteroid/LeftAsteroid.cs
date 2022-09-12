@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Asteroid : MonoBehaviour
+public class LeftAsteroid : MonoBehaviour
 {
     private Rigidbody2D myBody;
+    public GameObject powerup;
 
     // Start is called before the first frame update
     void Start()
@@ -15,29 +16,34 @@ public class Asteroid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveDown ();   
+        MoveLeft ();   
     }
 
-    void MoveDown()
+    void MoveLeft()
     {
         Vector2 newpos = transform.position;
-        newpos.y = newpos.y - 0.018f;
+        newpos.x = newpos.x - 0.018f;
         transform.position = newpos;
     }
 
     void OnTriggerEnter2D(Collider2D pCollidedGameObject)
     {
-        if (pCollidedGameObject.tag == "Bullet")
+        if (pCollidedGameObject.tag == "Bullet" || pCollidedGameObject.tag == "Wall")
         {
+            if (pCollidedGameObject.gameObject.CompareTag("Bullet"))
+                Instantiate(powerup, transform);
+
             Destroy(pCollidedGameObject.gameObject);
             Destroy(gameObject);
         }
     }
-
     void OnCollisionEnter2D(Collision2D pCollidedGameObject)
     {
-        if (pCollidedGameObject.gameObject.tag == "Bottom Wall")
+        if (pCollidedGameObject.gameObject.CompareTag ("Bullet") || pCollidedGameObject.gameObject.CompareTag("Wall"))
         {
+            if (pCollidedGameObject.gameObject.CompareTag("Bullet"))
+                Instantiate(powerup, transform);
+
             Destroy(pCollidedGameObject.gameObject);
             Destroy(gameObject);
         }
