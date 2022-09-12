@@ -6,7 +6,7 @@ public class BottomMissleScript : MonoBehaviour
 {
     private Rigidbody2D myBody;
 
-    private float speed = 7f;
+    private float speed = 12f;
 
     void Awake () {
         myBody = GetComponent<Rigidbody2D> ();

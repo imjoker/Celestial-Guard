@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class playerScript : MonoBehaviour
 {
@@ -25,8 +26,8 @@ public class playerScript : MonoBehaviour
     private Vector2 playerBegin;
 
 
-    private float speed = 8f;
-    private float maxVelocity = 4f;
+    private float[] speed = { 8f, 31f };
+    private float[] maxVelocity = { 4f, 8f };
 
     private Rigidbody2D myBody;
     private Animator anim;
@@ -203,14 +204,15 @@ public class playerScript : MonoBehaviour
         float h = Input.GetAxis ("Horizontal");//You can change the key diraction code
         float A = Input.GetAxis ("Vertical");
 
-        
+        bool isShiftDown = Input.GetKey(KeyCode.LeftShift);
+
         if(h > 0)
         {
         // moving right
-        if(velocity < maxVelocity)
-            force = speed;
+        if(velocity < maxVelocity[Convert.ToInt32(isShiftDown)])
+            force = speed[Convert.ToInt32(isShiftDown)];
 
-        Vector3 scale = transform.localScale;
+            Vector3 scale = transform.localScale;
         //scale.x = 1;
         transform.localScale = scale;
 
@@ -220,8 +222,8 @@ public class playerScript : MonoBehaviour
         else if(h < 0)
         {
             //moving left
-            if(velocity < maxVelocity)
-                force = -speed;
+            if(velocity < maxVelocity[Convert.ToInt32(isShiftDown)])
+                force = -speed[Convert.ToInt32(isShiftDown)];
 
             Vector3 scale = transform.localScale;
             //scale.x = -1;
@@ -233,27 +235,33 @@ public class playerScript : MonoBehaviour
         
         if(A > 0)
         {
-        // moving right
-        if(velocity < maxVelocity)
-            force1 = speed;
+        // moving up
+        if(velocity < maxVelocity[Convert.ToInt32(isShiftDown)])
+            force1 = speed[Convert.ToInt32(isShiftDown)];
 
-        Vector3 scale = transform.localScale;
+            Vector3 scale = transform.localScale;
         //scale.y = 1;
         transform.localScale = scale;
 
-        //anim.SetBool("Walk, true);
+            //anim.SetBool("Walk, true);
+
+            if (isShiftDown)
+                force1 -= 6f;
         }
         else if(A < 0)
         {
-            //moving left
-            if(velocity < maxVelocity)
-                force1 = -speed;
+            //moving down
+            if(velocity < maxVelocity[Convert.ToInt32(isShiftDown)])
+                force1 = -speed[Convert.ToInt32(isShiftDown)];
 
             Vector3 scale = transform.localScale;
             //scale.y = 1;
             transform.localScale = scale;
 
             //anim.SetBool("Walk, true);
+
+            if (isShiftDown)
+                force1 += 6f;
         }
 
         myBody.AddForce (new Vector2(force, 0));
@@ -264,13 +272,13 @@ public class playerScript : MonoBehaviour
     {
         if (GetComponent<playerScript>().isActualPlayer == false)
         {
-            if (pCollidedGameObject.gameObject.CompareTag("Enemy"))
+            if (pCollidedGameObject.gameObject.CompareTag("Enemy") || pCollidedGameObject.gameObject.tag == "Wall")
                 Destroy(gameObject);
             return;
         }
             
 
-        if (pCollidedGameObject.gameObject.CompareTag("Enemy"))
+        if (pCollidedGameObject.gameObject.CompareTag("Enemy") || pCollidedGameObject.gameObject.tag == "Wall")
         {
             
             if (lives > 0)
@@ -291,13 +299,13 @@ public class playerScript : MonoBehaviour
     {
         if (GetComponent<playerScript>().isActualPlayer == false)
         {
-            if (pCollidedGameObject.gameObject.CompareTag("Enemy"))
+            if (pCollidedGameObject.gameObject.CompareTag("Enemy") || pCollidedGameObject.tag == "Wall")
                 Destroy(gameObject);
 
             return;
         }
 
-        if (pCollidedGameObject.gameObject.CompareTag("Enemy"))
+        if (pCollidedGameObject.gameObject.CompareTag("Enemy") || pCollidedGameObject.tag == "Wall")
         {
             if (lives > 0)
             {
@@ -325,6 +333,7 @@ public class playerScript : MonoBehaviour
 
     void Respawn ()
     {
+        //anim.Play("player_die");
 
         lives -= 1;
         transform.position = playerBegin;

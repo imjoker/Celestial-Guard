@@ -6,8 +6,6 @@ public class WaveSpawner : MonoBehaviour
 {
     public enum SpawnState { SPAWNING, WAITING, COUNTING};
 
-    public Transform superenemy;
-
     [System.Serializable]
     public class Wave 
     {
@@ -103,9 +101,6 @@ public class WaveSpawner : MonoBehaviour
     void SpawnEnemy (Transform pEnemy)
     {
         Transform spawnpoint = spawnpoints[Random.Range(0, spawnpoints.Length)];
-
-        if (spawnpoint.CompareTag("super enemy location"))
-            pEnemy = superenemy;
 
         Instantiate(pEnemy, spawnpoint.position, spawnpoint.rotation);
     }
