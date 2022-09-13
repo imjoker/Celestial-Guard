@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
+    public GameObject gameManager;
     private Rigidbody2D myBody;
+    public int astrscore = 10;
 
     // Start is called before the first frame update
     void Start()
     {
         myBody = GetComponent<Rigidbody2D>();
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager");
     }
 
     // Update is called once per frame
@@ -31,6 +34,7 @@ public class Asteroid : MonoBehaviour
         {
             Destroy(pCollidedGameObject.gameObject);
             Destroy(gameObject);
+            gameManager.GetComponent<ScoreScript>().IncrementScore(astrscore);
         }
     }
 
@@ -38,7 +42,6 @@ public class Asteroid : MonoBehaviour
     {
         if (pCollidedGameObject.gameObject.tag == "Bottom Wall")
         {
-            Destroy(pCollidedGameObject.gameObject);
             Destroy(gameObject);
         }
     }

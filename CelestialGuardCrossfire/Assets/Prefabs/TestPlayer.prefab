@@ -175,4 +175,7 @@ MonoBehaviour:
   lives: 3
   bottomBorder: {fileID: 0}
   topBorder: {fileID: 0}
+  WaveSystems:
+  - {fileID: 0}
+  - {fileID: 0}
   isActualPlayer: 1

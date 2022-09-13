@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Project/StartUI/UI/UIscreen/UI.unity
     guid: 5470f8a16c299004b8aad647b49a657a
   - enabled: 1
-    path: Assets/Project/MainScene/MainScene.unity
+    path: Assets/Scenes/MainScene.unity
     guid: df1cbf8cb262c564ba954f8aac86d54b
   m_configObjects: {}

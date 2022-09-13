@@ -11,6 +11,8 @@ public class SuperEnemey : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
     public GameObject powerup;
+    public int superEnemyScore = 50;
+    private bool isAlive = true;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +27,9 @@ public class SuperEnemey : MonoBehaviour
     {
         float percentage_complete;
 
+        if (!isAlive)
+            return;
+
         elapsed_time += Time.deltaTime;
         percentage_complete = elapsed_time / desired_duration;
 
@@ -37,12 +42,17 @@ public class SuperEnemey : MonoBehaviour
     void OnTriggerEnter2D(Collider2D  pCollidedGameObject)
     {
         if (pCollidedGameObject.tag == "Bullet") 
-        { 
+        {
+            if (!isAlive)
+                return;
+
+            isAlive = false;
+
             anim.SetTrigger("Die");
             Debug.Log("collide");
             Destroy(pCollidedGameObject.gameObject);
 
-            gameManager.GetComponent<ScoreScript>().IncrementScore();
+            gameManager.GetComponent<ScoreScript>().IncrementScore(superEnemyScore);
             Debug.Log("collide2");
 
             //Destroy (gameObject);
@@ -52,6 +62,8 @@ public class SuperEnemey : MonoBehaviour
 
     public void Die()
     {
+        isAlive = false;
+
         Destroy(this.gameObject);
     }
 }

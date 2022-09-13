@@ -30,10 +30,9 @@ public class RightAsteroid : MonoBehaviour
     {
         if (pCollidedGameObject.tag == "Bullet" || pCollidedGameObject.tag == "Wall")
         {
-            if (pCollidedGameObject.gameObject.CompareTag("Bullet"))
-                Instantiate(powerup, transform);
+            if (pCollidedGameObject.tag == "Bullet")
+                Destroy(pCollidedGameObject.gameObject);
 
-            Destroy(pCollidedGameObject.gameObject);
             Destroy(gameObject);
         }
     }
@@ -43,9 +42,8 @@ public class RightAsteroid : MonoBehaviour
         if (pCollidedGameObject.gameObject.CompareTag("Bullet") || pCollidedGameObject.gameObject.CompareTag("Wall"))
         {
             if (pCollidedGameObject.gameObject.CompareTag("Bullet"))
-                Instantiate(powerup, transform);
+                Destroy(pCollidedGameObject.gameObject);
 
-            Destroy(pCollidedGameObject.gameObject);
             Destroy(gameObject);
         }
     }

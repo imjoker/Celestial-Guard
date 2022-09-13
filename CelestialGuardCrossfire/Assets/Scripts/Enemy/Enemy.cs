@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public GameObject gameManager;
     public GameObject bullet;
     private bool canShoot = true;
+    public int enemyScore = 30;
 
 
     // Start is called before the first frame update
@@ -61,7 +62,7 @@ public class Enemy : MonoBehaviour
     {
         if (pCollidedGameObject.tag == "Bullet") {
 
-            gameManager.GetComponent<ScoreScript>().IncrementScore();
+            gameManager.GetComponent<ScoreScript>().IncrementScore(enemyScore);
             Debug.Log("Score updated");
             Destroy (pCollidedGameObject.gameObject);
             Destroy (gameObject);
