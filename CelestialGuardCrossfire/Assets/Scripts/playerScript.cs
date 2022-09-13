@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using TMPro;
 
 public class playerScript : MonoBehaviour
 {
@@ -42,7 +43,11 @@ public class playerScript : MonoBehaviour
 
     private GameObject doublePlayer;
 
+    public GameObject[] WaveSystems;
+
     public bool isActualPlayer = true;
+
+    public TextMeshProUGUI livesText;
 
     void Awake () {
         InitializeVariables ();
@@ -79,50 +84,35 @@ public class playerScript : MonoBehaviour
     }
 
     void Shoot() {
-        if (Input.GetKeyDown(KeyCode.W))
+
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if(canShoot)
             {
-                StartCoroutine(ShootThetop_rocket());
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.A))
-        {
-            if (canShoot)
-            {
-                StartCoroutine(ShootTheLeft_rocket());
-            }
-        }
-        //else if (Input.GetKeyDown(KeyCode.S))
-        //{
-        //    if (canShoot)
-        //    {
-        //        StartCoroutine(ShootTheBottom_rocket());
-        //    }
-        //}
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            if (canShoot)
-            {
-                StartCoroutine(ShootTheRight_rocket());
+                StartCoroutine(Shootrocket());
             }
         }
     }
 
-    IEnumerator ShootThetop_rocket()
+    IEnumerator Shootrocket()
     {
         //anim.Play ("Shoot");
         Vector3 temp = transform.position;
         temp.y += 1f;
-
         Instantiate (top_rocket, temp, Quaternion.identity);
 
-        //SoundManagerScripts.PlaySound ("celestialguard_shoot");
-        //AudioSource.PlayClipAtPoint ("celestialguard_shoot", transform.position); 
+        temp = transform.position;
+        temp.x += 1f;
+        Instantiate(right_rocket, temp, Quaternion.identity);
+
+        temp = transform.position;
+        temp.x -= 1f;
+
+        Instantiate(left_rocket, temp, Quaternion.identity);
+
+        AudioSource.PlayClipAtPoint(shootSound, transform.position);
 
         yield return new WaitForSeconds (0.3f);
-
-        //anim.SetBool ("Shoot", false);
 
         canShoot = true;
 
@@ -299,13 +289,13 @@ public class playerScript : MonoBehaviour
     {
         if (GetComponent<playerScript>().isActualPlayer == false)
         {
-            if (pCollidedGameObject.gameObject.CompareTag("Enemy") || pCollidedGameObject.tag == "Wall")
+            if (pCollidedGameObject.gameObject.CompareTag("Enemy") || pCollidedGameObject.gameObject.CompareTag ("Wall"))
                 Destroy(gameObject);
 
             return;
         }
 
-        if (pCollidedGameObject.gameObject.CompareTag("Enemy") || pCollidedGameObject.tag == "Wall")
+        if (pCollidedGameObject.gameObject.CompareTag("Enemy") || pCollidedGameObject.gameObject.CompareTag("Wall"))
         {
             if (lives > 0)
             {
@@ -333,10 +323,22 @@ public class playerScript : MonoBehaviour
 
     void Respawn ()
     {
-        //anim.Play("player_die");
+        livesText.text = "Lives: " + lives.ToString();
 
         lives -= 1;
         transform.position = playerBegin;
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        for (int i = 0; i < enemies.Length; ++i)
+        {
+            Destroy(enemies[i]);
+        }
+        
+        for (int i = 0; i < WaveSystems.Length; ++i)
+        {
+            WaveSystems[i].GetComponent<WaveSpawner>().ResetWaveSystem();
+        }
     }
 
     public void Die()

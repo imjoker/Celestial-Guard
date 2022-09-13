@@ -21,9 +21,9 @@ public class ScoreScript : MonoBehaviour
         score.text = "Score: " + scoreValue.ToString();
     }
 
-    public void IncrementScore ()
+    public void IncrementScore (int pScore)
     {
-        ++scoreValue;
+        scoreValue += pScore;
         Debug.Log("Score Increased " + scoreValue);
     }
 }

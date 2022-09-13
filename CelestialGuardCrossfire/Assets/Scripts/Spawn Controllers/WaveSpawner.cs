@@ -104,4 +104,11 @@ public class WaveSpawner : MonoBehaviour
 
         Instantiate(pEnemy, spawnpoint.position, spawnpoint.rotation);
     }
+
+    public void ResetWaveSystem ()
+    {
+        nextwave = 0;
+        wave_countdown = time_between_waves;
+        search_countdown = 1f;
+    }
 }
