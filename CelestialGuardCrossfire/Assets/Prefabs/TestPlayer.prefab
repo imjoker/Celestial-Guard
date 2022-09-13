@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   top_rocket: {fileID: 6614020574648145737, guid: c8b510a36ffac8f46924fd99b1ef50e3, type: 3}
-  bottom_rocket: {fileID: 4025371850134015538, guid: e1877200461c78246bfd2567a6db9ac8, type: 3}
+  bottom_rocket: {fileID: 6614020574648145737, guid: 8673ac27480826149ba6149a5430c090, type: 3}
   left_rocket: {fileID: 6614020574648145737, guid: 7c3162ed49d9f334887152a204d6dc95, type: 3}
   right_rocket: {fileID: 6614020574648145737, guid: ead895b8ba413694cb4a3bba59f5ae8e, type: 3}
   shootSound: {fileID: 8300000, guid: 8f9b74d9835df3442aed1caca573a1ea, type: 3}
@@ -179,3 +179,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   isActualPlayer: 1
+  livesText: {fileID: 0}

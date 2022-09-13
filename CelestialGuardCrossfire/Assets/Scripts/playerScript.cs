@@ -110,6 +110,11 @@ public class playerScript : MonoBehaviour
 
         Instantiate(left_rocket, temp, Quaternion.identity);
 
+        temp = transform.position;
+        temp.y -= 1f;
+
+        Instantiate(bottom_rocket, temp, Quaternion.identity);
+
         AudioSource.PlayClipAtPoint(shootSound, transform.position);
 
         yield return new WaitForSeconds (0.3f);
@@ -334,7 +339,14 @@ public class playerScript : MonoBehaviour
         {
             Destroy(enemies[i]);
         }
-        
+
+        GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
+
+        for (int i = 0; i < bullets.Length; ++i)
+        {
+            Destroy(bullets[i]);
+        }
+
         for (int i = 0; i < WaveSystems.Length; ++i)
         {
             WaveSystems[i].GetComponent<WaveSpawner>().ResetWaveSystem();
