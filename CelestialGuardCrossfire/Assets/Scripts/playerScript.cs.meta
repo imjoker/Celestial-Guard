@@ -3,7 +3,14 @@ guid: 290d0a9874164a34aa0b298fc4f900e3
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - top_rocket: {instanceID: 0}
+  - bottom_rocket: {instanceID: 0}
+  - left_rocket: {instanceID: 0}
+  - right_rocket: {instanceID: 0}
+  - shootSound: {fileID: 8300000, guid: 8f9b74d9835df3442aed1caca573a1ea, type: 3}
+  - bottomBorder: {instanceID: 0}
+  - topBorder: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
