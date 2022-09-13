@@ -10675,6 +10675,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3069086114669553829, guid: 8ba7c388c8ae0dc439b54a9ac15ceef4, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 4025371850134015538, guid: 4824472c4fbf7e94595865a3921f9380, type: 3}
     - target: {fileID: 5507377769376650723, guid: 8ba7c388c8ae0dc439b54a9ac15ceef4, type: 3}
       propertyPath: m_Name
       value: BOSS
